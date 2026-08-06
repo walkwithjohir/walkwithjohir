@@ -255,7 +255,7 @@ button {
   object-fit: cover;
   transform: scale(1.05);
   will-change: transform;
-  opacity: 0.55;
+  opacity: 0.75;
 }
 
 .hero-overlay {

@@ -897,8 +897,8 @@ And strangely addictive.
 `,
 
     photos: [
-        "0001.jpg",
-        "0002.jpg",
+        "001.jpg",
+        "002.jpg",
         "003.jpg",
         "004.jpg",
         "005.jpg",
