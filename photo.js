@@ -210,20 +210,7 @@ Rather than chasing iconic landscapes, the project lingers in ordinary encounter
         "038.jpg",
         "039.jpg",
         "040.jpg",
-        "041.jpg",
-        "042.jpg",
-        "043.jpg",
-        "044.jpg",
-        "045.jpg",
-        "046.jpg",
-        "047.jpg",
-        "048.jpg",
-        "049.jpg",
-        "050.jpg",
-        "051.jpg",
-        "052.jpg",
-        "053.jpg",
-        "054.jpg"
+        "041.jpg"
     ]
 
 },
@@ -234,7 +221,7 @@ Rather than chasing iconic landscapes, the project lingers in ordinary encounter
 
     folder: "004-charak",
 
-    year: "2022",
+    year: "2018",
 
     location: "Bangladesh",
 
@@ -282,7 +269,7 @@ This project captures the emotional and physical depth of these rituals, focusin
 
     folder: "005-circus",
 
-    year: "2022",
+    year: "2018",
 
     location: "Bangladesh",
 
@@ -328,7 +315,7 @@ Circus: An Incomplete Story is both a celebration of a fading cultural tradition
 
     folder: "006-lazytopia",
 
-    year: "2023–Present",
+    year: "2017–Present",
 
     location: "Bangladesh",
 
@@ -372,7 +359,7 @@ A momentary rebellion. A world of Lazytopia.
 
     folder: "007-street",
 
-    year: "2022–Present",
+    year: "2017–Present",
 
     location: "Various",
 
@@ -463,7 +450,7 @@ This is what stayed with me.
 
     folder: "008-rajasthan",
 
-    year: "2024",
+    year: "2017",
 
     location: "Rajasthan, India",
 
@@ -537,7 +524,7 @@ This is Rajasthan.
 
     folder: "009-naughty",
 
-    year: "2022–Present",
+    year: "2018–Present",
 
     location: "Various",
 
@@ -578,7 +565,7 @@ It isn't about what is really there, but about what we think we see—if we're l
 
     folder: "010-thai",
 
-    year: "2025",
+    year: "2018",
 
     location: "Thailand",
 
@@ -634,7 +621,7 @@ Not a guide to a place, but a collection of moments that linger long after the j
 
     folder: "011-kolkata",
 
-    year: "2024",
+    year: "2018",
 
     location: "Kolkata, India",
 
@@ -688,7 +675,7 @@ Crosswalk Calcutta is a walk through those moments, where the ordinary becomes u
 
     folder: "012-identity-studies",
 
-    year: "2023–Present",
+    year: "2018–Present",
 
     location: "Various",
 
@@ -733,7 +720,7 @@ Identity Studies invites viewers into those spaces where the boundaries between 
 
     folder: "013-face",
 
-    year: "2022–Present",
+    year: "2018–Present",
 
     location: "Various",
 
@@ -780,7 +767,7 @@ These portraits offer glimpses into the diverse experiences that shape identity,
 
     folder: "014-earths-mosaic",
 
-    year: "2022–Present",
+    year: "2018–Present",
 
     location: "Various",
 
@@ -825,7 +812,7 @@ These photographs are moments of stillness—reminders that nature's beauty lies
 
     folder: "015-japan",
 
-    year: "2025",
+    year: "2018",
 
     location: "Japan",
 
@@ -866,7 +853,7 @@ Japan Reverie is less about documenting a destination than preserving the feelin
 
     folder: "016-dhaka-dot-com",
 
-    year: "2022–Present",
+    year: "2016–Present",
 
     location: "Dhaka, Bangladesh",
 
@@ -874,7 +861,7 @@ Japan Reverie is less about documenting a destination than preserving the feelin
 
     status: "Ongoing",
 
-    cover: "0001.jpg",
+    cover: "001.jpg",
 
     description: `
 Dhaka.
@@ -913,7 +900,7 @@ And strangely addictive.
 
     folder: "017-eternal-grace-in-stone",
 
-    year: "2022–Present",
+    year: "2025–Present",
 
     location: "Various",
 
