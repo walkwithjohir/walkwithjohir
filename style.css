@@ -17,6 +17,7 @@
   --mid:       #2a2a2a;
   --muted:     #888888;
   --faint:     #262626;
+  --border:    #262626; /* alias of --faint, kept for clarity where used as a border color */
   --accent:    #c8853a;
   --accent2:   #e8c87a;
   --white:     #f4f0eb;
@@ -54,6 +55,12 @@ button {
   background: none;
   font-family: inherit;
   cursor: pointer;
+}
+
+/* Shared centered container, used by About / Contact / Footer */
+.container {
+  width: min(1200px, 92%);
+  margin: 0 auto;
 }
 
 /* --- CUSTOM CURSOR --- */
@@ -367,8 +374,14 @@ button {
 }
 
 /* --- SECTIONS SHARED --- */
-.projects, .about, .contact {
+.projects {
   padding: 8rem 3rem;
+  position: relative;
+}
+
+.about,
+.contact {
+  padding: 160px 0;
   position: relative;
 }
 
@@ -386,6 +399,8 @@ button {
   font-size: 0.75rem;
   color: var(--accent);
   letter-spacing: 0.1em;
+  display: inline-block;
+  margin-bottom: 0.5rem;
 }
 
 .section-title {
@@ -715,96 +730,142 @@ button {
   color: var(--muted);
 }
 
-/* --- ABOUT SECTION --- */
-.about-container {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 4rem;
-  align-items: start;
+/* ============================================================
+   ABOUT
+   Matches: <section class="about"><div class="container">
+              <span class="section-number">
+              <h2 class="section-title">
+              <div class="about-content">
+                <h3 class="about-heading">
+                <p> ... </p>
+                <p class="about-ending">
+                <p class="about-signature">
+                <p class="about-name">
+   ============================================================ */
+
+.about-content {
+  max-width: 900px;
+  margin-top: 3rem;
 }
 
-.about-bio .about-lead {
-  font-size: clamp(1.4rem, 2.5vw, 1.8rem);
-  line-height: 1.5;
+.about-heading {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  line-height: 1.2;
   color: var(--white);
-  margin-bottom: 1.5rem;
-  font-weight: 300;
+  margin-bottom: 3rem;
 }
 
-.about-bio p {
-  font-size: 1.1rem;
+.about-content p {
+  font-size: 1.25rem;
+  line-height: 2;
+  color: var(--muted);
+  margin-bottom: 2.25rem;
+  max-width: 760px;
+}
+
+.about-content p strong {
+  color: var(--white);
+  font-weight: 500;
+}
+
+.about-ending {
+  margin-top: 5rem;
+  font-size: 1.5rem;
+  line-height: 2;
+  color: var(--white);
+}
+
+.about-signature {
+  margin-top: 3.75rem;
+  font-size: 1.25rem;
+  color: var(--white);
+}
+
+.about-name {
+  margin-top: 1rem;
+  color: var(--accent);
+  font-family: var(--font-mono);
+  letter-spacing: 0.08em;
+}
+
+/* ============================================================
+   CONTACT
+   Matches: <section class="contact"><div class="container">
+              <div class="contact-grid">
+                <div class="contact-left">
+                  <span class="section-number">
+                  <h2 class="section-title">
+                  <p class="section-intro">
+                <div class="contact-right">
+                  <a class="contact-email">
+                  <p class="contact-note">
+   ============================================================ */
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.contact-left .section-intro {
+  margin-top: 1.5rem;
+  font-size: 1.15rem;
   line-height: 1.8;
   color: var(--muted);
+  max-width: 440px;
 }
 
-.about-meta {
+.contact-right {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
-  border-left: 1px solid var(--faint);
-  padding-left: 2rem;
-}
-
-.meta-group h4 {
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 0.5rem;
-}
-
-.meta-group p {
-  font-family: var(--font-serif);
-  font-size: 1.1rem;
-  color: var(--white);
-}
-
-/* --- CONTACT SECTION --- */
-.contact-container {
-  max-width: 700px;
-}
-
-.contact-text {
-  font-size: clamp(1.2rem, 2vw, 1.5rem);
-  font-weight: 300;
-  color: var(--muted);
-  margin-bottom: 2rem;
-  line-height: 1.6;
+  gap: 1rem;
 }
 
 .contact-email {
+  display: inline-block;
   font-family: var(--font-serif);
-  font-size: clamp(2rem, 5vw, 3.5rem);
-  color: var(--accent);
+  font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+  color: var(--white);
   border-bottom: 1px solid transparent;
-  transition: border-color 0.3s, color 0.3s;
+  transition: color 0.3s, border-color 0.3s;
 }
 
 .contact-email:hover {
-  color: var(--accent2);
-  border-color: var(--accent2);
+  color: var(--accent);
+  border-color: var(--accent);
 }
 
-/* --- FOOTER --- */
-.footer {
-  border-top: 1px solid var(--faint);
-  padding: 3rem;
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
+.contact-note {
   color: var(--muted);
+  font-size: 1rem;
 }
 
-.footer-content {
+/* ============================================================
+   FOOTER
+   Matches: <footer class="footer"><div class="container"><p>...<p>...
+   ============================================================ */
+
+.footer {
+  padding: 2.5rem 0;
+  border-top: 1px solid var(--border);
+}
+
+.footer .container {
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: 1.25rem;
 }
 
-.footer-credit {
-  color: var(--accent);
+.footer p {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  color: var(--muted);
 }
 
 /* ============================================================
@@ -814,7 +875,8 @@ button {
   .nav { padding: 1.5rem 2rem; }
   .nav.nav-scrolled { padding: 1rem 2rem; }
   .hero { padding: 0 2rem; }
-  .projects, .about, .contact { padding: 6rem 2rem; }
+  .projects { padding: 6rem 2rem; }
+  .about, .contact { padding: 110px 0; }
   .projects-grid { gap: 2.5rem; }
 }
 
@@ -825,11 +887,11 @@ button {
   .hero { padding: 0 1.5rem; }
   .scroll-indicator { left: 1.5rem; bottom: 2rem; }
 
-  .projects, .about, .contact { padding: 5rem 1.5rem; }
+  .projects { padding: 5rem 1.5rem; }
+  .about, .contact { padding: 80px 0; }
   .projects-grid { grid-template-columns: 1fr; }
 
-  .about-container { grid-template-columns: 1fr; gap: 2.5rem; }
-  .about-meta { border-left: none; border-top: 1px solid var(--faint); padding-left: 0; padding-top: 2rem; }
+  .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
 
   .viewer-window { padding: 2rem 1.5rem; width: 95%; }
   .viewer-meta { flex-wrap: wrap; gap: 1rem; }
@@ -840,163 +902,5 @@ button {
 }
 
 @media (max-width: 480px) {
-  .footer-content { flex-direction: column; align-items: flex-start; }
-}
-
-/*==============================================================
-CONTACT
-==============================================================*/
-
-.contact{
-
-    padding:140px 0;
-
-    background:#111;
-
-}
-
-.contact-content{
-
-    margin-top:60px;
-
-}
-
-.contact-email{
-
-    display:inline-block;
-
-    font-size:clamp(2rem,4vw,3.5rem);
-
-    color:var(--white);
-
-    text-decoration:none;
-
-    transition:.3s;
-
-    border-bottom:1px solid transparent;
-
-}
-
-.contact-email:hover{
-
-    color:var(--accent);
-
-    border-color:var(--accent);
-
-}
-
-.contact-note{
-
-    margin-top:25px;
-
-    color:var(--muted);
-
-    font-size:1.1rem;
-
-}
-
-/*==============================================================
-FOOTER
-==============================================================*/
-
-.footer{
-
-    padding:40px 0;
-
-    border-top:1px solid var(--border);
-
-}
-
-.footer .container{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    flex-wrap:wrap;
-
-    gap:20px;
-
-}
-
-.footer p{
-
-    color:var(--muted);
-
-    font-family:"Space Mono",monospace;
-
-    font-size:.8rem;
-
-    letter-spacing:.08em;
-
-}
-
-/*==============================================================
-ABOUT
-==============================================================*/
-
-.about{
-
-    padding:120px 0;
-
-}
-
-.about-content{
-
-    max-width:760px;
-
-}
-
-.about-heading{
-
-    font-size:2rem;
-
-    margin-bottom:40px;
-
-    line-height:1.3;
-
-}
-
-.about-content p{
-
-    margin-bottom:28px;
-
-    color:var(--muted);
-
-    font-size:1.15rem;
-
-    line-height:1.9;
-
-}
-
-.about-ending{
-
-    margin-top:60px;
-
-    font-size:1.3rem;
-
-    line-height:2;
-
-    color:var(--white);
-
-}
-
-.about-signature{
-
-    margin-top:50px;
-
-    margin-bottom:10px;
-
-    color:var(--white);
-
-}
-
-.about-name{
-
-    font-family:"Space Mono", monospace;
-
-    color:var(--accent);
-
+  .footer .container { flex-direction: column; align-items: flex-start; }
 }
