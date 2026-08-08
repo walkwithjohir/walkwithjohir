@@ -927,7 +927,8 @@ Eternal Grace in Stone is a reflection on faith, endurance, and the quiet power 
         "004.jpg",
         "005.jpg",
         "006.jpg",
-        "007.jpg"
+        "007.jpg",
+        "008.jpg"
     ]
 
 },
