@@ -280,7 +280,7 @@ async function shareCurrentPhoto() {
     if (!project) return;
 
     const photoNumber = App.currentPhoto + 1;
-    const shareUrl = `${window.location.origin}/#${project.folder}/${photoNumber}`;
+    const shareUrl = `${window.location.origin}/share/${project.folder}/${photoNumber}/`;
 
     if (navigator.share) {
         try {
