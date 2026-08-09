@@ -109,21 +109,39 @@ foreach ($match in $projectMatches) {
 <meta name="twitter:image"
       content="$imageUrl">
 
-<meta http-equiv="refresh"
-      content="0; url=$websiteUrl">
-
 </head>
 
 <body>
 
-<p>
-Opening
-<a href="$websiteUrl">
-$title
-</a>
-</p>
+<div style="max-width:1000px;margin:40px auto;text-align:center;font-family:Arial,sans-serif;">
+
+    <img
+        src="$imageUrl"
+        alt="$title"
+        style="max-width:100%;height:auto;"
+    >
+
+    <h1>$title</h1>
+
+    <p>$description</p>
+
+    <p>
+        <a href="$websiteUrl">
+            Open photograph on Walk with Johir
+        </a>
+    </p>
+
+</div>
+
+<script>
+setTimeout(function () {
+    window.location.href = "$websiteUrl";
+}, 1500);
+</script>
 
 </body>
+
+
 </html>
 "@
 
