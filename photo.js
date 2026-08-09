@@ -756,7 +756,9 @@ These portraits offer glimpses into the diverse experiences that shape identity,
         "015.jpg",
         "016.jpg",
         "017.jpg",
-        "018.jpg"
+        "018.jpg",
+        "019.jpg",
+        "020.jpg"
     ]
 
 },
