@@ -41,22 +41,20 @@ const PHOTO_DATA = {
 
     location: "Bangladesh",
 
-    category: "Documentary Photography",
+    category: "Observational",
 
     status: "Ongoing",
 
     cover: "001.jpg",
 
     description: `
-Quiet Nothings is a gentle ode to absence — a quiet breath where presence once lingered.
+Quiet Nothings is a gentle meditation on absence — on the traces left behind when people, moments, and lives have moved on. It lingers on empty spaces, abandoned objects, distant figures, and ordinary places where something once happened.
 
-It reflects the weight of moments left behind, where time seems to hold its breath.
+These are not dramatic scenes, but small fragments of existence: a pair of sandals beside a river, empty chairs facing the water, a boat left on the shore, flowers scattered on the ground, or a solitary figure disappearing into the landscape.
 
-The images invite a slower gaze, revealing the quiet persistence of memory in forgotten corners.
+The images invite a slower gaze, allowing the quiet presence of memory to emerge from what appears insignificant. Each frame is a pause — a moment where what is missing becomes as meaningful as what remains.
 
-Each photograph is a pause, a moment where the unseen is deeply felt.
-
-Here, silence speaks, and emptiness hums with memory.
+Here, silence speaks, and emptiness carries the memory of what was.
 `,
 
     photos: [
