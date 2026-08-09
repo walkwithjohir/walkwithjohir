@@ -35,6 +35,7 @@ function initialize() {
     initHero();
     renderProjects();
     initGlobalKeyboardListeners();
+    openPhotoFromHash();
 }
 
 /* ============================================================
@@ -241,6 +242,7 @@ function createLightbox() {
             <div class="lightbox-info">
                 <h3 id="lightboxTitle"></h3>
                 <p id="lightboxCounter"></p>
+                <button class="lightbox-share" id="lightboxShare">↗ Share</button>
             </div>
         </div>
     `;
@@ -250,14 +252,90 @@ function createLightbox() {
     $(".lightbox-backdrop").addEventListener("click", closeLightbox);
     $(".lightbox-prev").addEventListener("click", previousPhoto);
     $(".lightbox-next").addEventListener("click", nextPhoto);
+    $("#lightboxShare").addEventListener("click", shareCurrentPhoto);
 }
 
 function openLightbox(index) {
     createLightbox();
     App.currentPhoto = index;
     updateLightbox();
+    updatePhotoUrl();
     $("#lightbox").classList.add("active");
 }
+
+function updatePhotoUrl() {
+    const project = App.currentProject;
+    if (!project) return;
+
+    const photoNumber = App.currentPhoto + 1;
+    history.replaceState(
+        null,
+        "",
+        `#${project.folder}/${photoNumber}`
+    );
+}
+
+async function shareCurrentPhoto() {
+    const project = App.currentProject;
+    if (!project) return;
+
+    const photoNumber = App.currentPhoto + 1;
+    const shareUrl = `${window.location.origin}/#${project.folder}/${photoNumber}`;
+
+    if (navigator.share) {
+        try {
+            await navigator.share({
+                title: `${project.title} — Photo ${photoNumber}`,
+                text: `A photograph from ${project.title} by Walk with Johir.`,
+                url: shareUrl
+            });
+        } catch (error) {
+            if (error.name !== "AbortError") {
+                console.error("Share failed:", error);
+            }
+        }
+    } else {
+        try {
+            await navigator.clipboard.writeText(shareUrl);
+            alert("Photo link copied to clipboard.");
+        } catch (error) {
+            console.error("Could not copy link:", error);
+            alert("Could not copy the photo link.");
+        }
+    }
+}
+
+function openPhotoFromHash() {
+    const hash = window.location.hash.substring(1);
+
+    if (!hash) return;
+
+    const parts = hash.split("/");
+    if (parts.length !== 2) return;
+
+    const folder = parts[0];
+    const photoNumber = parseInt(parts[1], 10);
+
+    if (!folder || !photoNumber || photoNumber < 1) return;
+
+    const project = App.projects.find(
+        project => project.folder === folder
+    );
+
+    if (!project) return;
+
+    const photoIndex = photoNumber - 1;
+
+    if (photoIndex < 0 || photoIndex >= project.photos.length) return;
+
+    openProject(project);
+
+    setTimeout(() => {
+        openLightbox(photoIndex);
+    }, 100);
+}
+
+
 
 function updateLightbox() {
     const project = App.currentProject;
