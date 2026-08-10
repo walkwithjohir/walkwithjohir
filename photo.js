@@ -974,4 +974,65 @@ Between Colors is an invitation to slow down and look at the spaces where change
 
 },
 
+"365 steps": {
+    title: "365 Steps",
+    folder: "019-365-project",
+    year: "2017–2018",
+    location: "Somewhere on Earth",
+    category: "Street",
+    status: "Completed",
+    cover: "001.jpg",
+
+    description: `
+A year of looking, walking, and waiting.
+
+365 Steps is a collection of moments photographed with a mobile phone during a year of everyday life. There was no particular destination and no attempt to stage what was seen. The camera became a way of paying attention to the streets — to people, movement, light, colour, gestures, and the small moments that might otherwise pass unnoticed.
+
+Made with a mobile phone, these images are direct and immediate. They record fragments of ordinary life as they appeared: a passing shadow, a crowded street, a quiet corner, a fleeting expression, or an unexpected encounter.
+
+The project is less about finding extraordinary scenes than about learning to notice what is already there.
+
+365 Steps is a record of looking — one day, one moment, one frame at a time.
+`,
+
+    photos: [
+        "001.jpg",
+        "002.jpg",
+        "003.jpg",
+        "004.jpg",
+        "005.jpg",
+        "006.jpg",
+        "007.jpg",
+        "008.jpg",
+        "009.jpg",
+        "010.jpg",
+        "011.jpg",
+        "012.jpg",
+        "013.jpg",
+        "014.jpg",
+        "015.jpg",
+        "016.jpg",
+        "017.jpg",
+        "018.jpg",
+        "019.jpg",
+        "020.jpg",
+        "021.jpg",
+        "022.jpg",
+        "023.jpg",
+        "024.jpg",
+        "025.jpg",
+        "026.jpg",
+        "027.jpg",
+        "028.jpg",
+        "029.jpg",
+        "030.jpg",
+        "031.jpg",
+        "032.jpg",
+        "033.jpg",
+        "034.jpg",
+        "035.jpg",
+        "036.jpg"
+    ]
+}
+
 };
