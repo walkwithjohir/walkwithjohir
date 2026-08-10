@@ -357,6 +357,8 @@ A momentary rebellion. A world of Lazytopia.
 
     folder: "007-street",
 
+    hidden: true,
+
     year: "2017–Present",
 
     location: "Various",
@@ -852,6 +854,8 @@ Japan Reverie is less about documenting a destination than preserving the feelin
     title: "DHAKA DOT COM",
 
     folder: "016-dhaka-dot-com",
+
+    hidden: true,
 
     year: "2016–Present",
 

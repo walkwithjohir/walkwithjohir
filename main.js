@@ -26,7 +26,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function initialize() {
     if (typeof PHOTO_DATA !== "undefined") {
-        App.projects = Object.values(PHOTO_DATA);
+        App.projects = Object.values(PHOTO_DATA).filter(
+            project => !project.hidden
+        );
         App.filteredProjects = [...App.projects];
     }
     
