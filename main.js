@@ -221,8 +221,12 @@ function openProject(project) {
 function closeProject() {
     const viewer = $("#projectViewer");
     if (!viewer) return;
+
     viewer.classList.remove("active");
     document.body.style.overflow = "";
+
+    // Clear the project/photo hash
+    history.replaceState(null, "", window.location.pathname);
 }
 
 /* ============================================================
@@ -358,18 +362,32 @@ function nextPhoto() {
     const total = App.currentProject.photos.length;
     App.currentPhoto = (App.currentPhoto + 1) % total;
     updateLightbox();
+    updatePhotoUrl();
 }
 
 function previousPhoto() {
     const total = App.currentProject.photos.length;
     App.currentPhoto = (App.currentPhoto - 1 + total) % total;
     updateLightbox();
+    updatePhotoUrl();
 }
 
 function closeLightbox() {
     const lightbox = $("#lightbox");
+
     if (lightbox) {
         lightbox.classList.remove("active");
+    }
+
+    // Remove the photo number from the URL
+    if (App.currentProject) {
+        history.replaceState(
+            null,
+            "",
+            `#${App.currentProject.folder}`
+        );
+    } else {
+        history.replaceState(null, "", window.location.pathname);
     }
 }
 
