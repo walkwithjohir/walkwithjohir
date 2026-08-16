@@ -1003,7 +1003,9 @@ Between Colors is an invitation to slow down and look at the spaces where change
         "007.jpg",
         "008.jpg",
         "009.jpg",
-        "010.jpg"
+        "010.jpg",
+        "011.jpg",
+        "012.jpg"
     ]
 
 },
