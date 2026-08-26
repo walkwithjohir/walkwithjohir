@@ -357,7 +357,7 @@ A momentary rebellion. A world of Lazytopia.
 
     folder: "007-street",
 
-    hidden: true,
+    hidden: false,
 
     year: "2017–Present",
 
