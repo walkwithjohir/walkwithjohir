@@ -431,3 +431,27 @@ function initGlobalKeyboardListeners() {
         }
     });
 }
+
+// iOS Safari viewport fix
+function updateViewportHeight() {
+    if (window.visualViewport) {
+        document.documentElement.style.setProperty(
+            "--visual-vh",
+            `${window.visualViewport.height}px`
+        );
+    } else {
+        document.documentElement.style.setProperty(
+            "--visual-vh",
+            `${window.innerHeight}px`
+        );
+    }
+}
+
+updateViewportHeight();
+
+if (window.visualViewport) {
+    window.visualViewport.addEventListener("resize", updateViewportHeight);
+    window.visualViewport.addEventListener("scroll", updateViewportHeight);
+}
+
+window.addEventListener("resize", updateViewportHeight);
