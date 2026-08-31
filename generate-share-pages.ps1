@@ -1,8 +1,85 @@
 $ErrorActionPreference = "Stop"
 
+Add-Type -AssemblyName System.Drawing
+
 $projectRoot = Split-Path -Parent $MyInvocation.MyCommand.Path
 $photoJsPath = Join-Path $projectRoot "photo.js"
 $shareRoot = Join-Path $projectRoot "share"
+$shareImageRoot = Join-Path $projectRoot "share-images"
+
+
+function New-SocialPreview {
+
+    param (
+        [string]$SourcePath,
+        [string]$OutputPath
+    )
+
+    $canvasWidth = 1200
+    $canvasHeight = 630
+
+    $sourceImage = [System.Drawing.Image]::FromFile($SourcePath)
+
+    try {
+
+        $canvas = New-Object System.Drawing.Bitmap(
+            $canvasWidth,
+            $canvasHeight
+        )
+
+        $graphics = [System.Drawing.Graphics]::FromImage($canvas)
+
+        try {
+
+            $graphics.Clear([System.Drawing.Color]::Black)
+
+            $scaleX = $canvasWidth / $sourceImage.Width
+            $scaleY = $canvasHeight / $sourceImage.Height
+
+            $scale = [Math]::Min($scaleX, $scaleY)
+
+            $newWidth = [int]($sourceImage.Width * $scale)
+            $newHeight = [int]($sourceImage.Height * $scale)
+
+            $x = [int](($canvasWidth - $newWidth) / 2)
+            $y = [int](($canvasHeight - $newHeight) / 2)
+
+            $graphics.InterpolationMode =
+                [System.Drawing.Drawing2D.InterpolationMode]::HighQualityBicubic
+
+            $graphics.SmoothingMode =
+                [System.Drawing.Drawing2D.SmoothingMode]::HighQuality
+
+            $graphics.PixelOffsetMode =
+                [System.Drawing.Drawing2D.PixelOffsetMode]::HighQuality
+
+            $graphics.DrawImage(
+                $sourceImage,
+                $x,
+                $y,
+                $newWidth,
+                $newHeight
+            )
+
+            $canvas.Save(
+                $OutputPath,
+                [System.Drawing.Imaging.ImageFormat]::Jpeg
+            )
+
+        }
+        finally {
+            $graphics.Dispose()
+        }
+
+    }
+    finally {
+        $sourceImage.Dispose()
+
+        if ($canvas) {
+            $canvas.Dispose()
+        }
+    }
+}
 
 Write-Host ""
 Write-Host "Generating social share pages..."
@@ -43,9 +120,24 @@ foreach ($match in $projectMatches) {
     for ($i = 0; $i -lt $photoMatches.Count; $i++) {
 
         $photoNumber = $i + 1
-        $photoFile = $photoMatches[$i].Groups[1].Value
+$photoFile = $photoMatches[$i].Groups[1].Value
 
-        $imageUrl = "https://www.walkwithjohir.com/photos/$folder/$photoFile"
+$sourcePath = Join-Path $projectRoot "photos\$folder\$photoFile"
+
+$shareImageDirectory = Join-Path $shareImageRoot $folder
+
+New-Item `
+    -ItemType Directory `
+    -Path $shareImageDirectory `
+    -Force | Out-Null
+
+$shareImagePath = Join-Path $shareImageDirectory $photoFile
+
+New-SocialPreview `
+    -SourcePath $sourcePath `
+    -OutputPath $shareImagePath
+
+$imageUrl = "https://www.walkwithjohir.com/share-images/$folder/$photoFile"
 
         $shareUrl = "https://www.walkwithjohir.com/share/$folder/$photoNumber/"
 
