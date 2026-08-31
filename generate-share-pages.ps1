@@ -51,7 +51,7 @@ foreach ($match in $projectMatches) {
 
         $websiteUrl = "https://www.walkwithjohir.com/#$folder/$photoNumber"
 
-        $title = "$projectTitle - Photo $photoNumber"
+        $title = "$projectTitle"
 
         $description = "A photograph from $projectTitle by Johirul Islam."
 
