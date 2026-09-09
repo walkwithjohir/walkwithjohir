@@ -17,6 +17,8 @@ const App = {
     currentPhoto: 0
 };
 
+let isHandlingHistory = false;
+
 /* ============================================================
    START APPLICATION
 ============================================================ */
@@ -37,7 +39,7 @@ function initialize() {
     initHero();
     renderProjects();
     initGlobalKeyboardListeners();
-    openPhotoFromHash();
+    handleHistoryNavigation();
 }
 
 /* ============================================================
@@ -184,6 +186,13 @@ function createProjectViewer() {
 
 function openProject(project) {
     App.currentProject = project;
+    if (!isHandlingHistory) {
+        history.pushState(
+            { project: project.folder },
+            "",
+            `#${project.folder}`
+        );
+    }
     createProjectViewer();
 
     const content = $("#viewerContent");
@@ -225,13 +234,12 @@ function openProject(project) {
 
 function closeProject() {
     const viewer = $("#projectViewer");
-    if (!viewer) return;
 
-    viewer.classList.remove("active");
-    document.body.style.overflow = "";
+    if (!viewer || !viewer.classList.contains("active")) {
+        return;
+    }
 
-    // Clear the project/photo hash
-    history.replaceState(null, "", window.location.pathname);
+    history.back();
 }
 
 /* ============================================================
@@ -274,16 +282,25 @@ function openLightbox(index) {
     $("#lightbox").classList.add("active");
 }
 
-function updatePhotoUrl() {
+function updatePhotoUrl(addHistory = true) {
     const project = App.currentProject;
     if (!project) return;
 
     const photoNumber = App.currentPhoto + 1;
-    history.replaceState(
-        null,
-        "",
-        `#${project.folder}/${photoNumber}`
-    );
+
+    if (addHistory && !isHandlingHistory) {
+        history.pushState(
+            { project: project.folder, photo: photoNumber },
+            "",
+            `#${project.folder}/${photoNumber}`
+        );
+    } else {
+        history.replaceState(
+            { project: project.folder, photo: photoNumber },
+            "",
+            `#${project.folder}/${photoNumber}`
+        );
+    }
 }
 
 async function shareCurrentPhoto() {
@@ -367,33 +384,24 @@ function nextPhoto() {
     const total = App.currentProject.photos.length;
     App.currentPhoto = (App.currentPhoto + 1) % total;
     updateLightbox();
-    updatePhotoUrl();
+    updatePhotoUrl(false);
 }
 
 function previousPhoto() {
     const total = App.currentProject.photos.length;
     App.currentPhoto = (App.currentPhoto - 1 + total) % total;
     updateLightbox();
-    updatePhotoUrl();
+    updatePhotoUrl(false);
 }
 
 function closeLightbox() {
     const lightbox = $("#lightbox");
 
-    if (lightbox) {
-        lightbox.classList.remove("active");
+    if (!lightbox || !lightbox.classList.contains("active")) {
+        return;
     }
 
-    // Remove the photo number from the URL
-    if (App.currentProject) {
-        history.replaceState(
-            null,
-            "",
-            `#${App.currentProject.folder}`
-        );
-    } else {
-        history.replaceState(null, "", window.location.pathname);
-    }
+    history.back();
 }
 
 function preloadNextImage() {
@@ -411,31 +419,94 @@ function preloadNextImage() {
 function initGlobalKeyboardListeners() {
     document.addEventListener("keydown", e => {
         const lightbox = $("#lightbox");
-        const isLightboxActive = lightbox && lightbox.classList.contains("active");
+        const isLightboxActive =
+            lightbox && lightbox.classList.contains("active");
 
         if (isLightboxActive) {
             switch (e.key) {
                 case "ArrowRight":
                     nextPhoto();
                     break;
+
                 case "ArrowLeft":
                     previousPhoto();
                     break;
+
                 case "Escape":
                     closeLightbox();
                     break;
             }
+
             return; // Don't proceed to closing the project viewer if lightbox was active
         }
 
         const projectViewer = $("#projectViewer");
-        const isViewerActive = projectViewer && projectViewer.classList.contains("active");
+        const isViewerActive =
+            projectViewer && projectViewer.classList.contains("active");
 
         if (isViewerActive && e.key === "Escape") {
             closeProject();
         }
     });
 }
+
+// History navigation
+function restoreFromHistory() {
+    const hash = window.location.hash.substring(1);
+
+    const lightbox = $("#lightbox");
+    const viewer = $("#projectViewer");
+
+    if (!hash) {
+        if (lightbox) lightbox.classList.remove("active");
+        if (viewer) viewer.classList.remove("active");
+
+        App.currentProject = null;
+        App.currentPhoto = 0;
+        document.body.style.overflow = "";
+
+        return;
+    }
+
+    const parts = hash.split("/");
+    const folder = parts[0];
+
+    const project = App.projects.find(
+        project => project.folder === folder
+    );
+
+    if (!project) return;
+
+    openProject(project);
+
+    if (parts.length === 2) {
+        const photoNumber = parseInt(parts[1], 10);
+
+        if (
+            Number.isInteger(photoNumber) &&
+            photoNumber >= 1 &&
+            photoNumber <= project.photos.length
+        ) {
+            openLightbox(photoNumber - 1);
+        }
+    } else {
+        if (lightbox) {
+            lightbox.classList.remove("active");
+        }
+    }
+}
+
+function handleHistoryNavigation() {
+    isHandlingHistory = true;
+
+    try {
+        restoreFromHistory();
+    } finally {
+        isHandlingHistory = false;
+    }
+}
+
+window.addEventListener("popstate", handleHistoryNavigation);
 
 // iOS Safari viewport fix
 function updateViewportHeight() {
