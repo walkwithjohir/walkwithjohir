@@ -148,9 +148,14 @@ function createProjectCard(project) {
     `;
 
     article.querySelector(".project-button").addEventListener("click", () => {
-        openProject(project);
+    openProject(project);
     });
 
+    article.querySelector(".project-image").addEventListener("click", () => {
+    openProject(project);
+    });
+
+    
     return article;
 }
 
