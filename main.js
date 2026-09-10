@@ -193,6 +193,13 @@ function openProject(project) {
             `#${project.folder}`
         );
     }
+
+    if (!isHandlingHistory && typeof gtag === "function") {
+        gtag("event", "project_view", {
+            project_title: project.title,
+            project_folder: project.folder
+        });
+    }
     createProjectViewer();
 
     const content = $("#viewerContent");
@@ -279,6 +286,15 @@ function openLightbox(index) {
     App.currentPhoto = index;
     updateLightbox();
     updatePhotoUrl();
+
+    if (!isHandlingHistory && typeof gtag === "function" && App.currentProject) {
+        gtag("event", "photo_view", {
+            project_title: App.currentProject.title,
+            project_folder: App.currentProject.folder,
+            photo_number: index + 1
+        });
+    }
+
     $("#lightbox").classList.add("active");
 }
 
