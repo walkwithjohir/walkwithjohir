@@ -1051,7 +1051,7 @@ The project is less about finding extraordinary scenes than about learning to no
 
   "elsewhere-but-here": {
 
-    title: "Elsewhere, but here",
+    title: "Elsewhere, But Here.",
 
     folder: "021-elsewhere-but-here",
 
