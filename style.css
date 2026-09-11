@@ -758,6 +758,14 @@ button {
   color: var(--muted);
 }
 
+#lightboxCaption {
+  margin: 0.25rem 0 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+}
+
 /* ============================================================
    ABOUT
    Matches: <section class="about"><div class="container">

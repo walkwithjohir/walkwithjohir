@@ -1047,6 +1047,60 @@ The project is less about finding extraordinary scenes than about learning to no
         "035.jpg",
         "036.jpg"
     ]
+},
+
+  "elsewhere-but-here": {
+
+    title: "Elsewhere, but here",
+
+    folder: "021-elsewhere-but-here",
+
+    year: "2025–Present",
+
+    location: "Europe",
+
+    category: "Observational",
+
+    status: "Ongoing",
+
+    cover: "001.jpg",
+
+    description: `
+A journey through unfamiliar streets, quiet encounters, and fleeting moments across Europe. Along the way, ordinary places, passing faces, and small details of everyday life are observed and remembered. Different cities and countries are seen not through their famous landmarks, but through the simple moments found while walking and looking around.
+
+With every step, something familiar can be found in an unfamiliar place — a gesture, a feeling, a quiet corner, or a moment that feels unexpectedly close to home.
+`,
+
+    photos: [
+      { src: "001.jpg", caption: "Linz, Austria | 2025" },
+      { src: "002.jpg", caption: "Linz, Austria | 2025" },
+      { src: "003.jpg", caption: "Linz, Austria | 2025" },
+      { src: "004.jpg", caption: "Linz, Austria | 2025" },
+      { src: "005.jpg", caption: "Linz, Austria | 2025" },
+      { src: "006.jpg", caption: "Linz, Austria | 2025" },
+      { src: "007.jpg", caption: "Linz, Austria | 2025" },
+      { src: "008.jpg", caption: "Linz, Austria | 2025" },
+      { src: "009.jpg", caption: "Linz, Austria | 2025" },
+      { src: "010.jpg", caption: "Linz, Austria | 2025" },
+      { src: "011.jpg", caption: "Linz, Austria | 2025" },
+      { src: "012.jpg", caption: "Linz, Austria | 2025" },
+      { src: "013.jpg", caption: "Budapest, Hungary | 2026" },
+      { src: "014.jpg", caption: "Hallstatt, Austria | 2026" },
+      { src: "015.jpg", caption: "Budapest, Hungary | 2026" },
+      { src: "016.jpg", caption: "Budapest, Hungary | 2026" },
+      { src: "017.jpg", caption: "Budapest, Hungary | 2026" },
+      { src: "018.jpg", caption: "Budapest, Hungary | 2026" },
+      { src: "019.jpg", caption: "Budapest, Hungary | 2026" },
+      { src: "020.jpg", caption: "Budapest, Hungary | 2026" },
+      { src: "021.jpg", caption: "Linz, Austria | 2025" },
+      { src: "022.jpg", caption: "Linz, Austria | 2025" },
+      { src: "023.jpg", caption: "Linz, Austria | 2025" },
+      { src: "024.jpg", caption: "Linz, Austria | 2025" }
+    ]
+
 }
 
+
 };
+
+

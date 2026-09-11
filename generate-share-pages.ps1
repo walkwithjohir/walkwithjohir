@@ -102,16 +102,23 @@ foreach ($match in $projectMatches) {
     $folder = $match.Groups[3].Value
     $photosBlock = $match.Groups[4].Value
 
+    # Support both:
+#   "001.jpg"
+# and:
+#   { src: "001.jpg", caption: "Linz, Austria | 2025" }
+
+$photoMatches = [regex]::Matches(
+    $photosBlock,
+    '(?m)^\s*"([^"]+)"\s*,?\s*$|\{\s*src:\s*"([^"]+)"'
+)
+
+if ($photoMatches.Count -eq 0) {
+    continue
+}
+
     
 
-    $photoMatches = [regex]::Matches(
-        $photosBlock,
-        '"([^"]+)"'
-    )
-
-    if ($photoMatches.Count -eq 0) {
-        continue
-    }
+    
 
     $totalProjects++
 
@@ -120,7 +127,11 @@ foreach ($match in $projectMatches) {
     for ($i = 0; $i -lt $photoMatches.Count; $i++) {
 
         $photoNumber = $i + 1
-$photoFile = $photoMatches[$i].Groups[1].Value
+$photoFile = if ($photoMatches[$i].Groups[1].Success) {
+    $photoMatches[$i].Groups[1].Value
+} else {
+    $photoMatches[$i].Groups[2].Value
+}
 
 $sourcePath = Join-Path $projectRoot "photos\$folder\$photoFile"
 

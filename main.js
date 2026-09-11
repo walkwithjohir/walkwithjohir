@@ -224,15 +224,20 @@ function openProject(project) {
     const gallery = document.createElement("div");
     gallery.className = "viewer-gallery";
 
-    project.photos.forEach((photo, index) => {
-        const item = document.createElement("div");
-        item.className = "viewer-photo";
-        item.innerHTML = `
-            <img src="photos/${project.folder}/${photo}" alt="${project.title} ${index + 1}" loading="lazy">
-        `;
-        item.addEventListener("click", () => openLightbox(index));
-        gallery.appendChild(item);
-    });
+    project.photos.forEach((photoData, index) => {
+    const photo = typeof photoData === "string"
+        ? photoData
+        : photoData.src;
+
+    const item = document.createElement("div");
+    item.className = "viewer-photo";
+    item.innerHTML = `
+        <img src="photos/${project.folder}/${photo}" alt="${project.title} ${index + 1}" loading="lazy">
+    `;
+
+    item.addEventListener("click", () => openLightbox(index));
+    gallery.appendChild(item);
+});
 
     content.appendChild(gallery);
     $("#projectViewer").classList.add("active");
@@ -268,6 +273,7 @@ function createLightbox() {
             <div class="lightbox-info">
                 <h3 id="lightboxTitle"></h3>
                 <p id="lightboxCounter"></p>
+                <p id="lightboxCaption"></p>
                 <button class="lightbox-share" id="lightboxShare">↗ Share</button>
                 <button class="lightbox-fullscreen" id="lightboxFullscreen">⛶ Full Screen</button>
             </div>
@@ -411,13 +417,26 @@ function updateLightbox() {
     const project = App.currentProject;
     if (!project) return;
 
-    const photo = project.photos[App.currentPhoto];
+    const photoData = project.photos[App.currentPhoto];
+
+    const photo = typeof photoData === "string"
+        ? photoData
+        : photoData.src;
+
+    const caption = typeof photoData === "string"
+        ? ""
+        : (photoData.caption || "");
+
     const img = $(".lightbox-image");
-    
+
     img.src = `photos/${project.folder}/${photo}`;
     img.alt = project.title;
+
     $("#lightboxTitle").textContent = project.title;
-    $("#lightboxCounter").textContent = `${App.currentPhoto + 1} / ${project.photos.length}`;
+    $("#lightboxCounter").textContent =
+        `${App.currentPhoto + 1} / ${project.photos.length}`;
+
+    $("#lightboxCaption").textContent = caption;
 
     preloadNextImage();
 }
@@ -449,10 +468,16 @@ function closeLightbox() {
 function preloadNextImage() {
     const project = App.currentProject;
     if (!project) return;
-    
+
     const next = (App.currentPhoto + 1) % project.photos.length;
+    const nextPhotoData = project.photos[next];
+
+    const nextPhoto = typeof nextPhotoData === "string"
+        ? nextPhotoData
+        : nextPhotoData.src;
+
     const img = new Image();
-    img.src = `photos/${project.folder}/${project.photos[next]}`;
+    img.src = `photos/${project.folder}/${nextPhoto}`;
 }
 
 /* ============================================================
