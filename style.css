@@ -646,7 +646,8 @@ button {
   transition: opacity 0.3s var(--ease-out);
 }
 
-.lightbox-share {
+.lightbox-share,
+.lightbox-fullscreen {
     margin-top: 0px;
     padding: 4px 8px;
     border: 1px solid rgba(255, 255, 255, 0.35);
@@ -658,7 +659,8 @@ button {
     transition: all 0.2s ease;
 }
 
-.lightbox-share:hover {
+.lightbox-share:hover,
+.lightbox-fullscreen:hover {
     background: rgba(255, 255, 255, 0.1);
 }
 

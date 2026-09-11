@@ -269,6 +269,7 @@ function createLightbox() {
                 <h3 id="lightboxTitle"></h3>
                 <p id="lightboxCounter"></p>
                 <button class="lightbox-share" id="lightboxShare">↗ Share</button>
+                <button class="lightbox-fullscreen" id="lightboxFullscreen">⛶ Full Screen</button>
             </div>
         </div>
     `;
@@ -279,7 +280,32 @@ function createLightbox() {
     $(".lightbox-prev").addEventListener("click", previousPhoto);
     $(".lightbox-next").addEventListener("click", nextPhoto);
     $("#lightboxShare").addEventListener("click", shareCurrentPhoto);
+    $("#lightboxFullscreen").addEventListener("click", toggleFullscreen);
 }
+
+function toggleFullscreen() {
+    const lightbox = $("#lightbox");
+
+    if (!document.fullscreenElement) {
+        lightbox.requestFullscreen().catch(err => {
+            console.error("Fullscreen failed:", err);
+        });
+    } else {
+        document.exitFullscreen();
+    }
+}
+
+document.addEventListener("fullscreenchange", () => {
+    const button = $("#lightboxFullscreen");
+
+    if (!button) return;
+
+    if (document.fullscreenElement) {
+        button.textContent = "⛶ Exit Full Screen";
+    } else {
+        button.textContent = "⛶ Full Screen";
+    }
+});
 
 function openLightbox(index) {
     createLightbox();
