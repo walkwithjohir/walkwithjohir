@@ -598,3 +598,28 @@ if (window.visualViewport) {
 }
 
 window.addEventListener("resize", updateViewportHeight);
+
+/* ============================================================
+   IMAGE PROTECTION
+============================================================ */
+
+// Disable right-click menu on images
+document.addEventListener("contextmenu", (e) => {
+    if (e.target.tagName === "IMG") {
+        e.preventDefault();
+    }
+});
+
+// Prevent images from being dragged to desktop
+document.addEventListener("dragstart", (e) => {
+    if (e.target.tagName === "IMG") {
+        e.preventDefault();
+    }
+});
+
+
+const copyrightYear = document.getElementById("copyrightYear");
+
+if (copyrightYear) {
+    copyrightYear.textContent = new Date().getFullYear();
+}
