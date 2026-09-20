@@ -947,3 +947,12 @@ button {
 @media (max-width: 480px) {
   .footer .container { flex-direction: column; align-items: flex-start; }
 }
+
+/* Prevent image saving through touch-and-hold on mobile */
+
+img {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-user-drag: none;
+}
