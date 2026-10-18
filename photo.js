@@ -1101,7 +1101,7 @@ With every step, something familiar can be found in an unfamiliar place — a ge
 },
 
 "where-life-meets-faith": {
-    title: "Where Life Meets Faith",
+    title: "Varanasi: Where Life Meets Faith!",
     folder: "022-vanarasi",
     year: "2017",
     location: "Varanasi, India",
