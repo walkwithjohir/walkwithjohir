@@ -1098,6 +1098,61 @@ With every step, something familiar can be found in an unfamiliar place — a ge
       { src: "024.jpg", caption: "Linz, Austria | 2025" }
     ]
 
+},
+
+"where-life-meets-faith": {
+    title: "Where Life Meets Faith",
+    folder: "022-vanarasi",
+    year: "2017",
+    location: "Varanasi, India",
+    category: "Observational",
+    status: "Completed",
+    cover: "001.jpg",
+
+    description: `Varanasi, 2017.
+
+Along the banks of the Ganges, faith and everyday life exist side by side. People pray, work, rest, wander, and gather along the ghats, where the sacred and the ordinary become difficult to separate.
+
+These photographs are fragments of my walks through the city—moments of devotion, movement, stillness, and everyday existence. They do not attempt to explain Varanasi, but simply observe a place where life and faith continually meet.`,
+
+    photos: [
+        "001.jpg",
+        "002.jpg",
+        "003.jpg",
+        "004.jpg",
+        "005.jpg",
+        "006.jpg",
+        "007.jpg",
+        "008.jpg",
+        "009.jpg",
+        "010.jpg",
+        "011.jpg",
+        "012.jpg",
+        "013.jpg",
+        "014.jpg",
+        "015.jpg",
+        "016.jpg",
+        "017.jpg",
+        "018.jpg",
+        "019.jpg",
+        "020.jpg",
+        "021.jpg",
+        "022.jpg",
+        "023.jpg",
+        "024.jpg",
+        "025.jpg",
+        "026.jpg",
+        "027.jpg",
+        "028.jpg",
+        "029.jpg",
+        "030.jpg",
+        "031.jpg",
+        "032.jpg",
+        "033.jpg",
+        "034.jpg",
+        "035.jpg",
+        "036.jpg"
+    ]
 }
 
 
